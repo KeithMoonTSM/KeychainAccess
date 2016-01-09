@@ -545,11 +545,7 @@ public class Keychain {
         var query = options.query()
         query[AttributeAccount] = key
         #if os(iOS)
-        if #available(iOS 9.0, *) {
-            query[UseAuthenticationUI] = UseAuthenticationUIFail
-        } else {
-            query[UseNoAuthenticationUI] = true
-        }
+        query[UseAuthenticationUI] = UseAuthenticationUIFail
         #elseif os(OSX)
         if #available(OSX 10.11, *) {
             query[UseAuthenticationUI] = UseAuthenticationUIFail
@@ -1086,11 +1082,6 @@ private let ValuePersistentRef = String(kSecValuePersistentRef)
 /** Other Constants */
 @available(iOS 8.0, OSX 10.10, *)
 private let UseOperationPrompt = String(kSecUseOperationPrompt)
-
-#if os(iOS)
-@available(iOS, introduced=8.0, deprecated=9.0, message="Use a UseAuthenticationUI instead.")
-private let UseNoAuthenticationUI = String(kSecUseNoAuthenticationUI)
-#endif
 
 @available(iOS 9.0, OSX 10.11, *)
 @available(watchOS, unavailable)
